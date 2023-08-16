@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-function UserForm({ user }) {
+function UserForm({ user, BASE_URL }) {
     const [username, setusername] = useState('');
     const [userLname, setuserLname] = useState('');
     const [email, setEmail] = useState('');
@@ -41,14 +41,15 @@ function UserForm({ user }) {
 
     console.log(token);
     console.log(user);
-    console.log(id);
+
 
     const getimage = async () => {
         const formData = new FormData();
         formData.append('profile', profile)
+        formData.append('id', id)
         console.log(profile)
         try {
-            const response = await axios.post('http://localhost:3001/image', formData, {
+            const response = await axios.post(`${BASE_URL}/image`, formData, {
                 headers: { "Content-Type": "multipart/form-data" },
             })
             console.log(response.data);
@@ -76,7 +77,7 @@ function UserForm({ user }) {
         }
         try {
 
-            const response = await axios.put('http://localhost:3001/user/updateuser', userUpdate, headers);
+            const response = await axios.put(`${BASE_URL}/user/updateuser`, userUpdate, headers);
 
             console.log(response.data);
         } catch (error) {
@@ -88,7 +89,7 @@ function UserForm({ user }) {
     return (
         <>
             <Dashboard />
-            <div className='card user-body mx-auto d-flex justify-content-center'>
+            <div className='card user-body mx-auto d-flex justify-content-center background'>
                 <form onSubmit={handleUserEdit}>
                     <div className="form-outline mb-4">
                         <input className="form-control" type="file"
@@ -142,10 +143,10 @@ function UserForm({ user }) {
                         <label className="form-label" >Email</label>
                     </div>
 
-                    <div class="form-outline mb-4">
-                        <input type="string" class="form-control"
+                    <div className="form-outline mb-4">
+                        <input type="string" name="form-control"
                             value={profession} onChange={(e) => setProfession(e.target.value)} />
-                        <label class="form-label" >Profession</label>
+                        <label className="form-label" >Profession</label>
                     </div>
 
                     {/* 

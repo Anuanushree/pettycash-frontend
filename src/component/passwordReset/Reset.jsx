@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
-function ResetPassword({ user }) {
+function ResetPassword({ user ,BASE_URL}) {
     const [password, setPassword] = useState('');
     const [cpassword, setCpassword] = useState('');
     const [error, seterror] = useState('');
@@ -27,7 +27,7 @@ function ResetPassword({ user }) {
                     password,
                     id
                 }
-                const response = await axios.post('http://localhost:3001/user/reset', users)
+                const response = await axios.post(`${BASE_URL}/user/reset`, users)
                 seterror(response.data.error)
                 console.log(response.data)
                 window.alert('password updated successfully');
@@ -46,12 +46,12 @@ function ResetPassword({ user }) {
                 <div className="d-flex justify-content-center h-100">
                     <div className="card login-card">
                         <div className="card-header login-card-header">
-                            <h3>Welcome back,{profile.username}</h3>
+                            {/* <h3>Welcome back,{profile.username}</h3> */}
 
                         </div>
                         <div className="card-body">
                             <form onSubmit={handleSignIn}>
-                                <div class="input-group form-group p-2">
+                                <div className="input-group form-group p-2">
                                     <div className="input-group-prepend login-input-group ">
                                         <span className="input-group-text"><i className="fas fa-key"></i></span>
                                     </div>
@@ -59,7 +59,7 @@ function ResetPassword({ user }) {
                                         value={password} onChange={(e) => setPassword(e.target.value)}
                                         placeholder="New password" required />
                                 </div>
-                                <div class="input-group form-group p-2">
+                                <div className="input-group form-group p-2">
                                     <div className="input-group-prepend login-input-group">
                                         <span className="input-group-text"><i className="fas fa-unlock-alt"></i></span>
                                     </div>
@@ -67,7 +67,7 @@ function ResetPassword({ user }) {
                                         value={cpassword} onChange={(e) => setCpassword(e.target.value)}
                                         placeholder="Confirm password" required />
                                 </div>
-                                <div class="form-group">
+                                <div className="form-group">
                                     <input type="submit" value="Reset" className="btn float-right login_btn" />
                                     <p className='error' >Message:{error}</p>
                                 </div>

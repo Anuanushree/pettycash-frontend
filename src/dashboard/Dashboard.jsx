@@ -17,9 +17,11 @@ function Dashboard() {
     const headers = {
         headers: { "authorization": `${token}` }
     }
+    const BASE_URL = "https://pettycash-uvd8.onrender.com";
+
     useEffect(() => {
         axios
-            .get('http://localhost:3001/user/updateuser', headers)
+            .get(`${BASE_URL}/user/updateuser`, headers)
             .then(response => setprofile(response.data))
         console.log(profile);
     }, []);
@@ -29,8 +31,13 @@ function Dashboard() {
         localStorage.removeItem(token);
         localStorage.removeItem(id);
         localStorage.removeItem(totalSaving);
+        
 
         navigate('/')
+    }
+    const handlenav = (event) => {
+        event.preventDefault();
+        navigate('/userlist')
     }
     return (
         <div>
@@ -44,7 +51,7 @@ function Dashboard() {
                         <div className="sidebar-brand-icon rotate-n-15">
                             <br /><br />
                             <a href='/userlist'><i class="fa fa-user icon" aria-hidden="true"></i></a>
-                            <p className="dashboard-user">{profile.username}</p>
+                            <p className="dashboard-user" onClick={handlenav}>{profile.username}</p>
                         </div>
                         <div className="sidebar-brand-text mx-3"></div>
                     </a>
@@ -86,8 +93,8 @@ function Dashboard() {
                     </li>
                     <hr className="sidebar-divider"></hr>
                     <li className="nav-item ">
-                        <Link className="nav-link" to="/signin">
-                            <i class='fas fa-power-off' style={{ fontSize: "20px" }}></i>
+                        <Link className="nav-link" to="/">
+                            <i className='fas fa-power-off' style={{ fontSize: "20px" }}></i>
                             <span onClick={hanldleLogout}>log out </span>
                         </Link>
                     </li>

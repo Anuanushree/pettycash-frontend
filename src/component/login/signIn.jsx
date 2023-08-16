@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-function SignIn() {
+function SignIn({BASE_URL}) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, seterror] = useState('');
@@ -16,7 +16,7 @@ function SignIn() {
                 email,
                 password
             }
-            const response = await axios.post('http://localhost:3001/user/signin', user)
+            const response = await axios.post(`${BASE_URL}/user/signin`, user)
             seterror(response.data.error);
             // const error = response.da
             console.log(response.data);

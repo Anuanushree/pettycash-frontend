@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import Dashboard from '../dashboard/Dashboard';
+import Dashboard from '../../dashboard/Dashboard';
 
-function Sample() {
+function IncomeEdit({ chartData, BASE_URL }) {
 
     const [salary, setsalary] = useState("0");
     const [incentive, setincentive] = useState("0");
@@ -18,14 +18,36 @@ function Sample() {
     const [error, seterror] = useState('')
 
     const token = localStorage.getItem('token');
-
+    const _id = localStorage.getItem('selectedId')
     const navigate = useNavigate();
-    const headers = {
-        headers: { "authorization": `${token}` }
+
+    const editData = async () => {
+        const findIncomeData = chartData.find(data => data._id === _id);
+        if (findIncomeData) {
+            setdate(findIncomeData.date);
+            setsalary(findIncomeData.salary);
+            setincentive(findIncomeData.incentive);
+            setrentIncome(findIncomeData.rentIncome);
+            setothers(findIncomeData.others);
+            setrent(findIncomeData.rent);
+            setloan(findIncomeData.loan);
+            setglossary(findIncomeData.glossary);
+            settransport(findIncomeData.transport);
+            setutilies(findIncomeData.utilies);
+
+        }
     }
-    const monyr = localStorage.getItem('monyr');
-    const getdate = new Date(date)
-    const handlesave = async (event) => {
+    useEffect(() => {
+        editData();
+
+    }, [])
+
+    const handleupdate = async (event) => {
+        event.preventDefault();
+
+        const headers = {
+            headers: { "authorization": `${token}` }
+        }
         event.preventDefault();
         console.log(monyr)
         const monthYear = (getdate.getMonth() + "/" + getdate.getFullYear())
@@ -35,24 +57,25 @@ function Sample() {
         if (!monyr.includes(monthYear)) {
 
             const savedata = {
-                date,
+                _id,
                 salary,
                 incentive,
                 rentIncome,
                 others,
                 rent,
+                date,
                 glossary,
                 loan, utilies,
                 transport
             }
             try {
-                const response = await axios.post('http://localhost:3001/user/incomedata', savedata, headers)
+                const response = await axios.put(`${BASE_URL}/user/incomeEdit`, savedata, headers)
                 console.log(response.data);
-                navigate('/graph')
-            } catch (error) {
-                seterror('error in save ncome and expenses :', error)
-            }
+                navigate('/data');
 
+            } catch (error) {
+                console.log('Error in getting a data:', error)
+            }
         } else {
             console.log("already exists")
             seterror('this moneth already exists')
@@ -64,12 +87,13 @@ function Sample() {
     return (
         <>
             <Dashboard />
-            <div className='i-e-body'>
+            <div className='i-e-body background'>
                 <form>
                     <div className='row p-2'>
 
                         <input type='date' className='m-2 p-2'
                             value={date} onChange={(e) => setdate(e.target.value)} required />
+
                         <div className='col-md-6 '>
                             <div className='income-body p-4'>
 
@@ -113,7 +137,7 @@ function Sample() {
                                 </div>
 
                                 <div className="form-outline mb-4">
-                                    <input type="number" class="form-control"
+                                    <input type="number" className="form-control"
                                         value={glossary} onChange={(e) => setglossary(e.target.value)} />
                                     <label className="form-label" >Glossary</label>
                                 </div>
@@ -139,7 +163,7 @@ function Sample() {
                             </div>
                         </div>
                         {/* <div className='col-md-6 text center'> */}
-                        <button onClick={handlesave} class="btn btn-primary btn-block mb-4">Save</button>
+                        <button onClick={handleupdate} className="btn btn-primary btn-block mb-4">Save</button>
                         <p>{error}</p>
                         {/* </div> */}
                     </div>
@@ -148,6 +172,7 @@ function Sample() {
             </div>
         </>
     )
+
 }
 
-export default Sample;
+export default IncomeEdit

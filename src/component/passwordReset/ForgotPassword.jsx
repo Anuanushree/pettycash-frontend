@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-function ForgotPassword() {
+function ForgotPassword({BASE_URL}) {
     const [email, setEmail] = useState('');
     const [error, seterror] = useState('')
 
@@ -11,7 +11,7 @@ function ForgotPassword() {
             const user = {
                 email
             }
-            const response = await axios.post('http://localhost:3001/user/forgot', user)
+            const response = await axios.post(`${BASE_URL}/user/forgot`, user)
             seterror(response.data.error);
             console.log(response.data)
         } catch (error) {
@@ -41,7 +41,7 @@ function ForgotPassword() {
                                         placeholder="usermail id" />
 
                                 </div>
-                                <div class="form-group">
+                                <div className="form-group">
                                     <input type="submit" value="Send" className="btn float-right login_btn" />
                                     <p className='error' >Message:{error}</p>
                                 </div>

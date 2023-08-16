@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-function SignUp() {
+function SignUp({ BASE_URL }) {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, seterror] = useState('')
 
-
+    const navigate = useNavigate()
     const handleSignUp = async (event) => {
         event.preventDefault();
         try {
@@ -16,9 +17,12 @@ function SignUp() {
                 email,
                 password
             }
-            const response = await axios.post('http://localhost:3001/user/signup', user)
+            const response = await axios.post(`${BASE_URL}/user/signup`, user)
             console.log(response.data);
-            seterror(response.data.error)
+            seterror(response.data.error);
+            if (!error) {
+                navigate('/')
+            }
         } catch (error) {
             console.log("Error in adding user :", error)
         }
