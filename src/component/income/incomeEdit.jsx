@@ -17,8 +17,10 @@ function IncomeEdit({ chartData, BASE_URL }) {
     const [error, seterror] = useState('')
 
     const token = localStorage.getItem('token');
-    const _id = localStorage.getItem('selectedId')
+    const _id = localStorage.getItem('selectedId');
+    const monyr = localStorage.getItem('monyr')
     const navigate = useNavigate();
+
 
     const editData = async () => {
         const findIncomeData = chartData.find(data => data._id === _id);
@@ -47,7 +49,7 @@ function IncomeEdit({ chartData, BASE_URL }) {
         const headers = {
             headers: { "authorization": `${token}` }
         }
-        event.preventDefault();
+
         const getdate = new Date(date)
         const monthYear = (getdate.getMonth() + "/" + getdate.getFullYear())
         console.log(monthYear)
@@ -87,7 +89,7 @@ function IncomeEdit({ chartData, BASE_URL }) {
         <>
             <Dashboard />
             <div className='background'>
-                
+
                 <div className='i-e-body '>
                     <h3 className='text-center'>Monthly Income and Expenses Form</h3>
                     <form>

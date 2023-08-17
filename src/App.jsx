@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.bundle';
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import { Link, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import './app.css';
 import SignIn from './component/login/signIn';
 import SignUp from './component/login/Signup';
@@ -11,12 +11,11 @@ import ForgotPassword from './component/passwordReset/ForgotPassword';
 import ResetPassword from './component/passwordReset/Reset';
 import Sample from './component/income/sample';
 import UserForm from './component/userDetails/userForm';
-import Userlist from './component/userDetails/userlist';
-import Graph from './component/graph/graph';
 import About from './component/about';
 import TableData from './component/graph/TableData';
 import IncomeEdit from './component/income/incomeEdit';
 import User from './component/userDetails/user';
+import GraphData from './component/graph/graphData';
 
 function App() {
   const [user, setuser] = useState([]);
@@ -36,15 +35,13 @@ function App() {
   const headers = {
     headers: { "authorization": `${token}` }
   }
-  const chart = () => {
-    axios
-      .get(`${BASE_URL}/user/graph`, headers)
-      .then(response => setChartData(response.data))
-
-
-      .catch(err => {
-        console.log('error in graph:', err)
-      })
+  const chart = async () => {
+    try {
+      const response = await axios.get(`${BASE_URL}/user/graph`, headers)
+      setChartData(response.data);
+    } catch (error) {
+      console.log('error in graph:', err)
+    }
   }
 
   useEffect(() => {
@@ -67,11 +64,10 @@ function App() {
             <Route path='/sample' element={<Sample BASE_URL={BASE_URL} chartData={chartData} />} />
             <Route path='/incomeEdit' element={<IncomeEdit BASE_URL={BASE_URL} chartData={chartData} />} />
             <Route path='/user' element={<UserForm user={user} BASE_URL={BASE_URL} />} />
-            <Route path='/userlist' element={<Userlist BASE_URL={BASE_URL} />} />
             <Route path='/profile' element={<User BASE_URL={BASE_URL} />} />
-            <Route path='/graph' element={<Graph BASE_URL={BASE_URL} chartData={chartData} />} />
+            <Route path='/graph' element={<GraphData BASE_URL={BASE_URL} />} />
             <Route path='/about' element={<About BASE_URL={BASE_URL} />} />
-            <Route path='/data' element={<TableData BASE_URL={BASE_URL} />} />
+            <Route path='/data' element={<TableData BASE_URL={BASE_URL} chartData={chartData} />} />
 
           </Routes>
         </div>

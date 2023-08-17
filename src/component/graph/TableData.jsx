@@ -5,33 +5,49 @@ import Dashboard from '../../dashboard/Dashboard';
 import { useNavigate } from 'react-router-dom';
 
 function TableData({ BASE_URL }) {
-
-    const sumSave = localStorage.getItem('sumSave');
-    const sumIncome = localStorage.getItem('sumIncome');
-    const sumExpense = localStorage.getItem('sumExpense');
     const [chartData, setChartData] = useState([]);
-    console.log(sumExpense);
-
-    const navigate = useNavigate();
+    const ExpenseTotal = [];
+    const saveTotal = [];
+    const income = [];
+    const dates = [];
     const token = localStorage.getItem('token');
     const headers = {
         headers: { "authorization": `${token}` }
     }
-    const chart = () => {
-
+    useEffect(() => {
         axios
             .get(`${BASE_URL}/user/graph`, headers)
             .then(response => setChartData(response.data))
-
-
             .catch(err => {
                 console.log('error in graph:', err)
             })
-    }
-
-    useEffect(() => {
-        chart();
     }, []);
+    const navigate = useNavigate();
+    if (chartData) {
+        for (let dataobj of chartData) {
+            const totalIncome = parseInt(dataobj.salary + dataobj.others + parseInt(dataobj.incentive) + dataobj.rentIncome)
+            const totalExpense = (dataobj.rent + dataobj.glossary + dataobj.utilies + dataobj.loan + dataobj.transport)
+            ExpenseTotal.push(totalExpense);
+            saveTotal.push(totalIncome - totalExpense)
+            income.push(parseInt((totalIncome)));
+        }
+    } else {
+        console.log("chart not update")
+    }
+    let sumIncome = 0;
+    for (let val in income) {
+        sumIncome = sumIncome + income[val];
+    }
+    let sumExpense = 0;
+    for (let val in ExpenseTotal) {
+        sumExpense = sumExpense + parseInt(ExpenseTotal[val]);
+    }
+    console.log(sumExpense);
+    let sumSave = 0;
+    for (let val in saveTotal) {
+        sumSave = sumSave + parseInt(saveTotal[val]);
+    }
+    console.log(sumSave);
 
     function setId(selectedId) {
         localStorage.setItem('selectedId', selectedId);
@@ -45,7 +61,7 @@ function TableData({ BASE_URL }) {
         } catch (error) {
             console.log("Error in delete income data:", error)
         }
-        redirect('/data')
+        navigate(0)
     }
 
     return (

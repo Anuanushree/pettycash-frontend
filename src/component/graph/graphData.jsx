@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Bar } from "react-chartjs-2";
 import { BarElement, CategoryScale, Chart as ChartJS, Legend, LinearScale, Title, Tooltip } from "chart.js";
 import Dashboard from '../../dashboard/Dashboard';
+import axios from 'axios';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
-function Graph({ chartData }) {
-
+function GraphData({ BASE_URL }) {
+    const [chartData, setChartData] = useState([]);
     const [count, setcount] = useState(2023)
 
     const expenses = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -13,10 +14,20 @@ function Graph({ chartData }) {
     const ExpenseTotal = [];
     const saveTotal = [];
     const income = [];
+
     const dates = [];
     const year = []
-    localStorage.setItem('monyr', dates);
 
+    const token = localStorage.getItem('token');
+    console.log(token)
+    const headers = {
+        headers: { "authorization": `${token}` }
+    }
+    useEffect(() => {
+        axios
+            .get(`${BASE_URL}/user/graph`, headers)
+            .then(response => setChartData(response.data));
+    }, []);
     if (chartData) {
         for (let dataobj of chartData) {
 
@@ -43,6 +54,8 @@ function Graph({ chartData }) {
     } else {
         console.log("chart not update")
     }
+
+   
     let sumIncome = 0;
     for (let val in income) {
         sumIncome = sumIncome + income[val];
@@ -57,10 +70,12 @@ function Graph({ chartData }) {
         sumSave = sumSave + parseInt(saveTotal[val]);
     }
     console.log(sumSave);
+    console.log(dates)
     localStorage.setItem('sumSave', sumSave);
     localStorage.setItem("year", year)
     localStorage.setItem('sumIncome', sumIncome);
     localStorage.setItem('sumExpense', sumExpense);
+    localStorage.setItem('monyr', dates);
 
     const data = ({
         labels: ["jan", "feb", "mar", "apr", "may", "jun", "july", "aug", "sep", "oct", "nov", "dec"], fontWeight: "normal",
@@ -122,4 +137,4 @@ function Graph({ chartData }) {
     )
 }
 
-export default Graph;
+export default GraphData;

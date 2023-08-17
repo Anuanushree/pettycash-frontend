@@ -92,7 +92,7 @@ function UserForm({ user, BASE_URL }) {
 
             <div className='card user-body mx-auto d-flex justify-content-center background '>
                 <form onSubmit={handleUserEdit}>
-
+                    <h3 className='text-center'>Edit Profile</h3>
                     <div className="form-outline mb-4">
                         <input className="form-control" type="file"
                             accept='image/*' onChange={(e) => setprofile(e.target.files[0])} required

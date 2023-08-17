@@ -25,12 +25,14 @@ function Sample({ BASE_URL }) {
     }
 
     const monyr = localStorage.getItem('monyr');
-    const getdate = new Date(date)
+
+    console.log(monyr)
     const handlesave = async (event) => {
         event.preventDefault();
         console.log(monyr)
+        const getdate = new Date(date)
         const monthYear = (getdate.getMonth() + "/" + getdate.getFullYear())
-        console.log(monthYear)
+        console.log(monthYear);
 
         if (!monyr.includes(monthYear)) {
 
@@ -48,15 +50,19 @@ function Sample({ BASE_URL }) {
             try {
                 const response = await axios.post(`${BASE_URL}/user/incomedata`, savedata, headers)
                 console.log(response.data);
-                navigate('/graph')
+                if (response.data) {
+                    navigate('/graph')
+                }
+
             } catch (error) {
                 seterror('error in save income and expenses :', error)
             }
 
         } else {
             console.log("already exists")
-            seterror('this moneth already exists')
+            seterror('this month already exists')
         }
+
     }
 
 

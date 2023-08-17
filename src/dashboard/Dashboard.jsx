@@ -14,6 +14,10 @@ function Dashboard() {
     const id = localStorage.getItem('id');
     const token = localStorage.getItem('token');
     const totalSaving = localStorage.getItem('sumSave');
+
+    const sumSave = localStorage.getItem('sumSave');
+    const sumIncome = localStorage.getItem('sumIncome');
+    const sumExpense = localStorage.getItem('sumExpense');
     const headers = {
         headers: { "authorization": `${token}` }
     }
@@ -31,6 +35,10 @@ function Dashboard() {
         localStorage.removeItem(token);
         localStorage.removeItem(id);
         localStorage.removeItem(totalSaving);
+
+        localStorage.removeItem(sumSave);
+        localStorage.removeItem(sumIncome);
+        localStorage.removeItem(sumExpense);
 
 
         navigate('/')
@@ -57,7 +65,7 @@ function Dashboard() {
                     </a>
                     <br /><br />
                     <li className="nav-item active">
-                        <Link className="nav-link" to="/userlist">
+                        <Link className="nav-link" to="/profile">
                             <i className="far fa-id-badge" style={{ fontSize: "20px" }} ></i>
                             {/* <FontAwesomeIcon icon={faTachometerAlt} /> */}
                             <span>profile</span>
