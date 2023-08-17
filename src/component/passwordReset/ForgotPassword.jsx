@@ -43,7 +43,7 @@ function ForgotPassword({BASE_URL}) {
                                 </div>
                                 <div className="form-group">
                                     <input type="submit" value="Send" className="btn float-right login_btn" />
-                                    <p className='error' >Message:{error}</p>
+                                    <p className='text-center error'>Message:{error}</p>
                                 </div>
 
                                 <div className="d-flex justify-content-center links">

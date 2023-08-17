@@ -109,7 +109,7 @@ function Graph({ chartData }) {
     return (
         <>
             <Dashboard />
-            <div className='background'>
+            <div className='background-graph'>
                 <div className="App">
                     <p className='year'>  <i onClick={decreament} class="fa fa-arrow-left" aria-hidden="true"></i>
                         &nbsp;  {count}    &nbsp;<i onClick={increament} class="fa fa-arrow-right" aria-hidden="true"></i></p>

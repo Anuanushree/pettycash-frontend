@@ -66,7 +66,7 @@ function SignUp({ BASE_URL }) {
                                 </div>
                                 <div class="form-group">
                                     <button type='submit' className="btn float-right login_btn" >sign up</button>
-                                    <p className='error' >Message:{error}</p>
+                                    <p className='text-center error' >{error}</p>
                                 </div>
                             </form>
                         </div>

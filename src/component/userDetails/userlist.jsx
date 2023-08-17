@@ -6,14 +6,14 @@ import { useNavigate } from 'react-router-dom';
 function Userlist({ user, BASE_URL }) {
     const [profile, setprofile] = useState([]);
     const [chartData, setChartData] = useState([]);
-    const [image, setImage] = useState(null);
+
 
     const id = localStorage.getItem('id');
     const token = localStorage.getItem('token');
     const totalSaving = localStorage.getItem('sumSave');
     const year = localStorage.getItem('year');
 
-   
+
     const headers = {
         headers: { "authorization": `${token}` }
     }
@@ -38,6 +38,18 @@ function Userlist({ user, BASE_URL }) {
     useEffect(() => {
         chart();
     }, []);
+    // const getimg = async () => {
+    //     const name = profile.profilename
+    //     try {
+    //         const response = await axios.get(`${BASE_URL}/image`, name);
+    //         console.log(response.data)
+    //     } catch (error) {
+
+    //     }
+    // }
+    // useEffect(() => {
+    //     getimg();
+    // })
     console.log(year);
     console.log(chartData)
     for (let yr of year) {
@@ -48,15 +60,14 @@ function Userlist({ user, BASE_URL }) {
         }
 
     }
-  
+
     return (
         <>
             <Dashboard />
-            <div className='list-body background'>
-                <h2 className='text-center' id='headingStyle'>Petty cashier<span><a href='/userlist'>
-                    </a></span></h2>
+            <div className='list-body  background'>
+                <h2 className='text-center' id='headingStyle'>Petty cashier</h2>
 
-                <div className="page-content page-container" id="page-content">
+                <div className="page-content page-container d-flex justify-content-center" id="page-content">
                     <div className="padding list-padding">
                         <div className="row container">
                             <div className="col-xl-10 col-md-12">
@@ -65,7 +76,7 @@ function Userlist({ user, BASE_URL }) {
                                         <div className="col-sm-12 col-md-4 text-center bg-c-lite-green user-profile">
                                             <div className="card-block text-center text-white">
                                                 <div className="m-b-25">
-                                                    <img src={`/src/assets/${profile.profilename}`} class="img-radius img-fluid profile-img " alt="User-Profile-Image"
+                                                    <img src={`http://localhost:3001/assets/${profile.profilename}`} className="img-radius img-fluid profile-img " alt="User-Profile-Image"
                                                     />
                                                 </div>
                                                 <h6 className="f-w-600">{profile.username}</h6>
@@ -106,11 +117,7 @@ function Userlist({ user, BASE_URL }) {
 
                                                     </div>
                                                 </div>
-                                                <ul className="social-link list-unstyled m-t-40 m-b-10">
-                                                    <li><a href="#!" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="facebook" data-abc="true"><i class="mdi mdi-facebook feather icon-facebook facebook" aria-hidden="true"></i></a></li>
-                                                    <li><a href="#!" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="twitter" data-abc="true"><i class="mdi mdi-twitter feather icon-twitter twitter" aria-hidden="true"></i></a></li>
-                                                    <li><a href="#!" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="instagram" data-abc="true"><i class="mdi mdi-instagram feather icon-instagram instagram" aria-hidden="true"></i></a></li>
-                                                </ul>
+
                                             </div>
                                         </div>
                                     </div>

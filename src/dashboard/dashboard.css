@@ -13,7 +13,7 @@
 
 #headingStyle {
     padding: 10px;
- 
+
     position: relative;
     color: #000;
     width: 100%;
@@ -70,7 +70,8 @@ a:focus {
 
 .sidebar {
     width: 6.5rem;
-    min-height: 120vh
+    min-height: 100vh;
+    max-height: 160vh;
 }
 
 .sidebar .nav-item {

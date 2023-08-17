@@ -56,7 +56,7 @@ function UserForm({ user, BASE_URL }) {
         } catch (error) {
             console.log("error in img: ", error)
         }
-    }
+    };
     const handleUserEdit = async (event) => {
         event.preventDefault();
 
@@ -89,13 +89,15 @@ function UserForm({ user, BASE_URL }) {
     return (
         <>
             <Dashboard />
-            <div className='card user-body mx-auto d-flex justify-content-center background'>
+
+            <div className='card user-body mx-auto d-flex justify-content-center background '>
                 <form onSubmit={handleUserEdit}>
+
                     <div className="form-outline mb-4">
                         <input className="form-control" type="file"
                             accept='image/*' onChange={(e) => setprofile(e.target.files[0])} required
                         />
-                        <label className="form-label" >Address</label>
+                        <label className="form-label" >Upload your profile</label>
                     </div>
                     <div className="row mb-4">
                         <div className="col-md-6">
@@ -144,22 +146,24 @@ function UserForm({ user, BASE_URL }) {
                     </div>
 
                     <div className="form-outline mb-4">
-                        <input type="string" name="form-control"
+                        <input type="text" className="form-control"
                             value={profession} onChange={(e) => setProfession(e.target.value)} />
                         <label className="form-label" >Profession</label>
                     </div>
 
-                    {/* 
-                <div class="form-outline mb-4">
-                    <textarea class="form-control" rows="4"></textarea>
-                    <label class="form-label" >Additional information</label>
-                </div> */}
+
+                    <div class="form-outline mb-4">
+                        <button type="submit" className="btn btn-primary btn-block  form-control mb-4">Save</button>
+                        {/* <textarea class="form-control" rows="4"></textarea>
+                    <label class="form-label" >Additional information</label> */}
+                    </div>
 
 
 
-                    <button type="submit" className="btn btn-primary btn-block mb-4">Save</button>
+
                 </form>
             </div>
+
         </>
     )
 }

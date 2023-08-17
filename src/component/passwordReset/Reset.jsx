@@ -69,7 +69,7 @@ function ResetPassword({ user ,BASE_URL}) {
                                 </div>
                                 <div className="form-group">
                                     <input type="submit" value="Reset" className="btn float-right login_btn" />
-                                    <p className='error' >Message:{error}</p>
+                                    <p className='text-center error' >Message:{error}</p>
                                 </div>
 
                             </form>

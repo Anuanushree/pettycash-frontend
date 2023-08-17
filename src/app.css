@@ -1,5 +1,5 @@
 .login-body {
-    background-image: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg');
+    background-image: url('./assets/trial.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     height: 100%;
@@ -76,14 +76,11 @@
 
 /* userform */
 .user-body {
-    margin-top: 50px;
-    padding: 30px;
-    /* margin-left: 3vw;
-    margin-right: 3vw; */
-    padding-top: 20px;
-    border: 1px solid black;
+    padding-left: 40px;
+    padding-right: 40px;
     width: 60vw;
-    height: 100%;
+    font-weight: bolder;
+
 }
 
 /* userList/ */
@@ -95,20 +92,29 @@
 .list-body {
     background-color: #f9f9fa;
     width: 100%;
-    /* background-image: url('./assets/bg-img.avif');
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    width: 100%;
-    height: 600px; */
+}
+
+.error {
+    color: red;
+    font-size: larger;
+    font-weight: bolder;
 }
 
 .background {
-    background-image: url('./assets/bg.webp');
+    background-image: url('./assets/o.avif');
     background-size: 100% 100%;
     background-repeat: no-repeat;
-    width: 100%; 
-    /* height: 750;
-    /* opacity: 0.9; */
+    width: 150%;
+   
+
+}
+
+.background-graph {
+    background-image: url('./assets/o.avif');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    width: 250%;
+    opacity: 0.9;
 }
 
 .list-padding {
@@ -253,6 +259,8 @@ h6 {
     width: 90%;
     padding: 2vw;
     border: 1px solid black;
+    font-size: larger;
+    font-weight: bolder;
 }
 
 .income-body {
@@ -263,14 +271,9 @@ h6 {
 }
 
 .graph-bar {
-    /* width: 60vw; */
-    /* height: 70vw; */
+
     border: 1px solid black;
     overflow-y: scroll;
-}
-
-.tables {
-    /* overflow-x: scroll; */
 }
 
 .year {

@@ -62,7 +62,7 @@ function SignIn({BASE_URL}) {
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" onClick={handleSignIn} className="btn float-right login_btn" >login</button>
-                                    <p className='error' >Message:{error}</p>
+                                    <p className='text-center error' >{error}</p>
                                 </div>
                             </form>
                         </div>

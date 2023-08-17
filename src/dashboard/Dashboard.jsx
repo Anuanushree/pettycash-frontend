@@ -31,7 +31,7 @@ function Dashboard() {
         localStorage.removeItem(token);
         localStorage.removeItem(id);
         localStorage.removeItem(totalSaving);
-        
+
 
         navigate('/')
     }
@@ -50,7 +50,7 @@ function Dashboard() {
                     <a className="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                         <div className="sidebar-brand-icon rotate-n-15">
                             <br /><br />
-                            <a href='/userlist'><i class="fa fa-user icon" aria-hidden="true"></i></a>
+                            <a href='/userlist'><i className="fa fa-user icon" aria-hidden="true"></i></a>
                             <p className="dashboard-user" onClick={handlenav}>{profile.username}</p>
                         </div>
                         <div className="sidebar-brand-text mx-3"></div>
@@ -67,7 +67,7 @@ function Dashboard() {
                     <hr className="sidebar-divider"></hr>
                     <li className="nav-item ">
                         <Link className="nav-link" to="/graph">
-                            <i class='fas fa-poll icon' style={{ fontSize: "20px" }}></i>
+                            <i className='fas fa-poll icon' style={{ fontSize: "20px" }}></i>
                             <span>graph</span>
                         </Link>
                     </li>
@@ -77,7 +77,7 @@ function Dashboard() {
                     <li className="nav-item ">
                         <Link className="nav-link" to="/sample">
                             {/* <i class="fas fa-github"></i> */}
-                            <i class="fas fa-money-check-alt icon" style={{ fontSize: "20px" }}></i>
+                            <i className="fas fa-money-check-alt icon" style={{ fontSize: "20px" }}></i>
 
                             <span>Income and Expenses</span>
                         </Link>
@@ -86,7 +86,7 @@ function Dashboard() {
                     <li className="nav-item ">
                         <Link className="nav-link" to="/data">
 
-                            <i class='fas fa-money-check icon' style={{ fontSize: "20px" }}></i>
+                            <i className='fas fa-money-check icon' style={{ fontSize: "20px" }}></i>
                             {/* <FontAwesomeIcon icon={faTachometerAlt} /> */}
                             <span>Ledger</span>
                         </Link>

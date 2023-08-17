@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Dashboard from '../../dashboard/Dashboard';
-import { Table } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 function TableData({ BASE_URL }) {
 
@@ -11,11 +11,14 @@ function TableData({ BASE_URL }) {
     const sumExpense = localStorage.getItem('sumExpense');
     const [chartData, setChartData] = useState([]);
     console.log(sumExpense);
+
+    const navigate = useNavigate();
     const token = localStorage.getItem('token');
+    const headers = {
+        headers: { "authorization": `${token}` }
+    }
     const chart = () => {
-        const headers = {
-            headers: { "authorization": `${token}` }
-        }
+
         axios
             .get(`${BASE_URL}/user/graph`, headers)
             .then(response => setChartData(response.data))
@@ -36,18 +39,21 @@ function TableData({ BASE_URL }) {
     }
     const deleteditems = async (_id) => {
         try {
-            const response = await axios.delete(`${BASE_URL}/user/incomedelete`, header, _id)
-            console.log(response.data)
+            const response = await axios.delete(`${BASE_URL}/user/incomedelete/${_id}`, headers)
+            console.log(response.data);
+
         } catch (error) {
-            console.log("Error in deleted income data:", error)
+            console.log("Error in delete income data:", error)
         }
+        navigate("/data");
     }
 
     return (
         <>
             <Dashboard />
             {/* <Table striped bordered hover responsive> */}
-            <div className='table-responsive m-2 background'>
+            <div className='table-responsive background'>
+                <h3 className='text-center'>LEDGER</h3>
                 <table className="table table-dark table-bordered border border-primary p-2 m-4">
                     <thead>
                         <tr><th colSpan="6"> Income</th>
@@ -67,15 +73,15 @@ function TableData({ BASE_URL }) {
                             <th>loan</th>
                             <th>Transport</th>
                             <th>Utilies</th>
-                            <th rowspan="2">Total Income</th>
-                            <th rowspan="2">Total Expenses</th>
-                            <th rowspan="2" colSpan={2}>Total save</th>
+                            <th rowSpan="2">Total Income</th>
+                            <th rowSpan="2">Total Expenses</th>
+                            <th rowSpan="2" colSpan={2}>Total save</th>
 
                         </tr>
                     </tbody>
                     {
                         chartData.map((datas) => (
-                            <tbody key={datas.id}>
+                            <tbody key={datas._id}>
                                 <tr>
                                     {/* {date.map(date => <td >{date}</td>)} */}
                                     <td>{datas.date}</td>
@@ -101,7 +107,7 @@ function TableData({ BASE_URL }) {
                                         <Link >
                                             <button className='btn btn-danger'
                                                 onClick={(e) =>
-                                                    deleteditems(tabledata.id)}>delete</button>
+                                                    deleteditems(datas._id)}>delete</button>
                                         </Link>
                                     </td>
 
