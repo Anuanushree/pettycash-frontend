@@ -3,7 +3,7 @@ import axios from 'axios';
 import Dashboard from '../../dashboard/Dashboard';
 import { useNavigate } from 'react-router-dom';
 
-function Userlist({ user, BASE_URL }) {
+function User({ user, BASE_URL }) {
     const [profile, setprofile] = useState([]);
     const [chartData, setChartData] = useState([]);
 
@@ -131,4 +131,4 @@ function Userlist({ user, BASE_URL }) {
     )
 }
 
-export default Userlist;
+export default User;

@@ -16,7 +16,7 @@ import Graph from './component/graph/graph';
 import About from './component/about';
 import TableData from './component/graph/TableData';
 import IncomeEdit from './component/income/incomeEdit';
-import User from '../../backend/model/user';
+import User from './component/userDetails/user';
 
 function App() {
   const [user, setuser] = useState([]);
