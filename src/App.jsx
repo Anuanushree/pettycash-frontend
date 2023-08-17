@@ -16,6 +16,7 @@ import Graph from './component/graph/graph';
 import About from './component/about';
 import TableData from './component/graph/TableData';
 import IncomeEdit from './component/income/incomeEdit';
+import User from '../../backend/model/user';
 
 function App() {
   const [user, setuser] = useState([]);
@@ -67,6 +68,7 @@ function App() {
             <Route path='/incomeEdit' element={<IncomeEdit BASE_URL={BASE_URL} chartData={chartData} />} />
             <Route path='/user' element={<UserForm user={user} BASE_URL={BASE_URL} />} />
             <Route path='/userlist' element={<Userlist BASE_URL={BASE_URL} />} />
+            <Route path='/profile' element={<User BASE_URL={BASE_URL} />} />
             <Route path='/graph' element={<Graph BASE_URL={BASE_URL} chartData={chartData} />} />
             <Route path='/about' element={<About BASE_URL={BASE_URL} />} />
             <Route path='/data' element={<TableData BASE_URL={BASE_URL} />} />

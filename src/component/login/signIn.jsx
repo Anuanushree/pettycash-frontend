@@ -25,7 +25,7 @@ function SignIn({BASE_URL}) {
             localStorage.setItem('token', value);
             localStorage.setItem('id', id)
             if (value) {
-                navigate("/userlist");
+                navigate("/profile");
             }
         } catch (error) {
             console.log("Error in signin user :", error)

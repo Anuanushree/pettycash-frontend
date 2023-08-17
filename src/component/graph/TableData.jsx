@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, redirect } from 'react-router-dom';
 import Dashboard from '../../dashboard/Dashboard';
 import { useNavigate } from 'react-router-dom';
 
@@ -45,7 +45,7 @@ function TableData({ BASE_URL }) {
         } catch (error) {
             console.log("Error in delete income data:", error)
         }
-        navigate("/data");
+        redirect('/data')
     }
 
     return (

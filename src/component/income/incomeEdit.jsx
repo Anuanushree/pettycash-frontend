@@ -49,7 +49,6 @@ function IncomeEdit({ chartData, BASE_URL }) {
         }
         event.preventDefault();
         const getdate = new Date(date)
-        console.log(monyr)
         const monthYear = (getdate.getMonth() + "/" + getdate.getFullYear())
         console.log(monthYear)
         // const findDate = monyr.find(data => data === monthYear)

@@ -84,7 +84,7 @@ function UserForm({ user, BASE_URL }) {
             console.log("Error in userEdit: ", error)
         }
         getimage();
-        navigate('/userlist')
+        navigate('/profile')
     }
     return (
         <>
