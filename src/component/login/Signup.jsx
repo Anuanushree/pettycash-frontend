@@ -19,12 +19,14 @@ function SignUp({ BASE_URL }) {
             }
             const response = await axios.post(`${BASE_URL}/user/signup`, user)
             console.log(response.data);
+            var msg = response.data.message
             seterror(response.data.error);
-            if (!error) {
-                navigate('/')
-            }
+
         } catch (error) {
             console.log("Error in adding user :", error)
+        }
+        if (msg === 'User added successfully') {
+            navigate('/')
         }
     }
     return (

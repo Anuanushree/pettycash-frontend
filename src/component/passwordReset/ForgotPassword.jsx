@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-function ForgotPassword({BASE_URL}) {
+function ForgotPassword({ BASE_URL }) {
     const [email, setEmail] = useState('');
     const [error, seterror] = useState('')
 
@@ -43,7 +43,7 @@ function ForgotPassword({BASE_URL}) {
                                 </div>
                                 <div className="form-group">
                                     <input type="submit" value="Send" className="btn float-right login_btn" />
-                                    <p className='text-center error'>Message:{error}</p>
+                                    <p className='text-center error'>{error}</p>
                                 </div>
 
                                 <div className="d-flex justify-content-center links">
