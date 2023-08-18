@@ -55,8 +55,6 @@ function IncomeEdit({ chartData, BASE_URL }) {
         console.log(monthYear)
         // const findDate = monyr.find(data => data === monthYear)
 
-        if (!monyr.includes(monthYear)) {
-
             const savedata = {
                 _id,
                 salary,
@@ -78,10 +76,6 @@ function IncomeEdit({ chartData, BASE_URL }) {
                 console.log('Error in getting a data:', error);
                 seterror(error.response.data.error);
             }
-        } else {
-            console.log("already exists");
-            seterror('this month already exists');
-        }
     }
 
 
