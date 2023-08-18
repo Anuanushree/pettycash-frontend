@@ -20,7 +20,7 @@ import GraphData from './component/graph/graphData';
 function App() {
   const [user, setuser] = useState([]);
   const [chartData, setChartData] = useState([]);
-  const BASE_URL = "http://localhost:3001";
+  const BASE_URL = "https://pettycash-uvd8.onrender.com";
   // https://pettycash-uvd8.onrender.com
   // http://localhost:3001
   console.log("starting")

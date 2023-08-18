@@ -49,6 +49,7 @@ function SignUp({ BASE_URL }) {
                                         placeholder="username" required />
 
                                 </div>
+                                
                                 <div className="input-group form-group">
                                     <div className="input-group-prepend login-input-group">
                                         <span className="input-group-text"><i className="fas fa-envelope"></i></span>

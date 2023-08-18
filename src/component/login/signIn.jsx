@@ -23,12 +23,13 @@ function SignIn({BASE_URL}) {
             const value = response.data.token
             const id = response.data.id
             localStorage.setItem('token', value);
-            localStorage.setItem('id', id)
+            localStorage.setItem('id', id);
             if (value) {
                 navigate("/profile");
             }
         } catch (error) {
-            console.log("Error in signin user :", error)
+            console.log("Error in signin user :", error);
+
         }
     };
 
