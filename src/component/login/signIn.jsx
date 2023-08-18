@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-function SignIn({BASE_URL}) {
+function SignIn({ BASE_URL }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, seterror] = useState('');
@@ -17,8 +17,7 @@ function SignIn({BASE_URL}) {
                 password
             }
             const response = await axios.post(`${BASE_URL}/user/signin`, user)
-            seterror(response.data.error);
-            // const error = response.da
+         
             console.log(response.data);
             const value = response.data.token
             const id = response.data.id
@@ -29,7 +28,7 @@ function SignIn({BASE_URL}) {
             }
         } catch (error) {
             console.log("Error in signin user :", error);
-
+            seterror(error.response.data.error);
         }
     };
 
@@ -53,7 +52,7 @@ function SignIn({BASE_URL}) {
                                         placeholder="usermail id" required />
 
                                 </div>
-                                <div class="input-group form-group">
+                                <div className="input-group form-group">
                                     <div className="input-group-prepend login-input-group">
                                         <span className="input-group-text"><i className="fas fa-key"></i></span>
                                     </div>
@@ -61,7 +60,7 @@ function SignIn({BASE_URL}) {
                                         value={password} onChange={(e) => setPassword(e.target.value)}
                                         placeholder="password" required />
                                 </div>
-                                <div class="form-group">
+                                <div className="form-group">
                                     <button type="submit" onClick={handleSignIn} className="btn float-right login_btn" >login</button>
                                     <p className='text-center error' >{error}</p>
                                 </div>

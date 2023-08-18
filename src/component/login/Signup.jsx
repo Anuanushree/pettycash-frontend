@@ -20,10 +20,11 @@ function SignUp({ BASE_URL }) {
             const response = await axios.post(`${BASE_URL}/user/signup`, user)
             console.log(response.data);
             var msg = response.data.message
-            seterror(response.data.error);
+            // seterror(response.data.error);
 
         } catch (error) {
             console.log("Error in adding user :", error)
+            seterror(error.response.data.error);
         }
         if (msg === 'User added successfully') {
             navigate('/')
@@ -49,7 +50,7 @@ function SignUp({ BASE_URL }) {
                                         placeholder="username" required />
 
                                 </div>
-                                
+
                                 <div className="input-group form-group">
                                     <div className="input-group-prepend login-input-group">
                                         <span className="input-group-text"><i className="fas fa-envelope"></i></span>

@@ -4,9 +4,9 @@ import axios from 'axios';
 import Dashboard from '../../dashboard/Dashboard';
 
 function IncomeEdit({ chartData, BASE_URL }) {
-    const [salary, setsalary] = useState("0");
-    const [incentive, setincentive] = useState("0");
-    const [rentIncome, setrentIncome] = useState("0");
+    const [salary, setsalary] = useState(0);
+    const [incentive, setincentive] = useState(0);
+    const [rentIncome, setrentIncome] = useState(0);
     const [others, setothers] = useState(0);
     const [rent, setrent] = useState(0);
     const [glossary, setglossary] = useState(0);
@@ -75,11 +75,12 @@ function IncomeEdit({ chartData, BASE_URL }) {
                 navigate('/data');
 
             } catch (error) {
-                console.log('Error in getting a data:', error)
+                console.log('Error in getting a data:', error);
+                seterror(error.response.data.error);
             }
         } else {
-            console.log("already exists")
-            seterror('this moneth already exists')
+            console.log("already exists");
+            seterror('this month already exists');
         }
     }
 
@@ -92,11 +93,8 @@ function IncomeEdit({ chartData, BASE_URL }) {
 
                 <div className='i-e-body '>
                     <h3 className='text-center'>Monthly Income and Expenses Form</h3>
-                    <form>
+                    <form onSubmit={handleupdate}>
                         <div className='row p-2'>
-
-                            <input type='date' className='m-2 p-2'
-                                value={date} onChange={(e) => setdate(e.target.value)} required />
 
                             <div className='col-md-6 '>
                                 <div className='income-body p-4'>
@@ -167,7 +165,7 @@ function IncomeEdit({ chartData, BASE_URL }) {
                                 </div>
                             </div>
                             {/* <div className='col-md-6 text center'> */}
-                            <button onClick={handleupdate} className="btn btn-primary btn-block mb-4">Save</button>
+                            <button type='submit' className="btn btn-primary btn-block mb-4">Save</button>
                             <p className='text-center error'>{error}</p>
                             {/* </div> */}
                         </div>

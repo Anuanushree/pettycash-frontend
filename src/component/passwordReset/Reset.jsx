@@ -28,13 +28,13 @@ function ResetPassword({ user, BASE_URL }) {
                     id
                 }
                 const response = await axios.post(`${BASE_URL}/user/reset`, users)
-                seterror(response.data.error)
                 console.log(response.data)
                 if (response.data.message == "password updated successfully") {
                     navigate('/')
                 }
             } catch (error) {
                 console.log("Error in signin user :", error)
+                seterror(error.response.data.error)
             }
         } else {
             seterror("password doesnot match")

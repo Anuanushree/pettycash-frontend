@@ -45,7 +45,7 @@ function Dashboard() {
     }
     const handlenav = (event) => {
         event.preventDefault();
-        navigate('/userlist')
+        navigate('/profile')
     }
     return (
         <div>
@@ -58,7 +58,7 @@ function Dashboard() {
                     <a className="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                         <div className="sidebar-brand-icon rotate-n-15">
                             <br /><br />
-                            <a href='/userlist'><i className="fa fa-user icon" aria-hidden="true"></i></a>
+                            <a href='/profile'><i className="fa fa-user icon" aria-hidden="true"></i></a>
                             <p className="dashboard-user" onClick={handlenav}>{profile.username}</p>
                         </div>
                         <div className="sidebar-brand-text mx-3"></div>

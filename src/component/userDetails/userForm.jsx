@@ -78,10 +78,10 @@ function UserForm({ user, BASE_URL }) {
         try {
 
             const response = await axios.put(`${BASE_URL}/user/updateuser`, userUpdate, headers);
-
             console.log(response.data);
         } catch (error) {
-            console.log("Error in userEdit: ", error)
+            console.log("Error in userEdit: ", error);
+            seterror(error.response.data.error)
         }
         getimage();
         navigate('/profile')

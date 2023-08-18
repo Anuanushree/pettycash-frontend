@@ -43,11 +43,13 @@ function TableData({ BASE_URL }) {
         sumExpense = sumExpense + parseInt(ExpenseTotal[val]);
     }
     console.log(sumExpense);
+
     let sumSave = 0;
     for (let val in saveTotal) {
         sumSave = sumSave + parseInt(saveTotal[val]);
     }
     console.log(sumSave);
+    localStorage.setItem('sumSave', sumSave)
 
     function setId(selectedId) {
         localStorage.setItem('selectedId', selectedId);

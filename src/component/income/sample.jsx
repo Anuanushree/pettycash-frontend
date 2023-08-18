@@ -5,9 +5,9 @@ import Dashboard from '../../dashboard/Dashboard';
 
 function Sample({ BASE_URL }) {
 
-    const [salary, setsalary] = useState("0");
-    const [incentive, setincentive] = useState("0");
-    const [rentIncome, setrentIncome] = useState("0");
+    const [salary, setsalary] = useState(0);
+    const [incentive, setincentive] = useState(0);
+    const [rentIncome, setrentIncome] = useState(0);
     const [others, setothers] = useState(0);
     const [rent, setrent] = useState(0);
     const [glossary, setglossary] = useState(0);
@@ -18,14 +18,13 @@ function Sample({ BASE_URL }) {
     const [error, seterror] = useState('')
 
     const token = localStorage.getItem('token');
+    const monyr = localStorage.getItem('monyr');
+
 
     const navigate = useNavigate();
     const headers = {
         headers: { "authorization": `${token}` }
     }
-
-    const monyr = localStorage.getItem('monyr');
-
     console.log(monyr)
     const handlesave = async (event) => {
         event.preventDefault();
@@ -47,20 +46,24 @@ function Sample({ BASE_URL }) {
                 loan, utilies,
                 transport
             }
-            try {
-                const response = await axios.post(`${BASE_URL}/user/incomedata`, savedata, headers)
-                console.log(response.data);
-                if (response.data) {
-                    navigate('/graph')
+            if (date != '') {
+                try {
+                    const response = await axios.post(`${BASE_URL}/user/incomedata`, savedata, headers)
+                    console.log(response.data);
+                    if (response.data) {
+                        navigate('/graph')
+                    }
+
+                } catch (error) {
+                    console.log('error in save income and expenses :', error);
+                    seterror(error.response.data.error)
                 }
-
-            } catch (error) {
-                seterror('error in save income and expenses :', error)
+            } else {
+                seterror('fill the form');
             }
-
         } else {
             console.log("already exists")
-            seterror('this month already exists')
+            seterror('This month already exists');
         }
 
     }
@@ -73,7 +76,7 @@ function Sample({ BASE_URL }) {
             <div className='background'>
                 <div className='i-e-body '>
                     <h3 className='text-center'>Monthly Income and Expenses Form</h3>
-                    <form>
+                    <form onSubmit={handlesave}>
                         <div className='row p-2'>
 
                             <input type='date' className='m-2 p-2'
@@ -108,7 +111,6 @@ function Sample({ BASE_URL }) {
                                     </div>
 
 
-
                                 </div>
                             </div>
                             <div className='col-md-6 mb-4'>
@@ -116,20 +118,20 @@ function Sample({ BASE_URL }) {
 
                                     <div className="form-outline mb-4">
                                         <input type="number" className="form-control"
-                                            value={rent} onChange={(e) => setrent(e.target.value)} />
+                                            value={rent} onChange={(e) => setrent(e.target.value)} required />
                                         <label class="form-label" >Rent </label>
                                     </div>
 
                                     <div className="form-outline mb-4">
                                         <input type="number" className="form-control"
-                                            value={glossary} onChange={(e) => setglossary(e.target.value)} />
+                                            value={glossary} onChange={(e) => setglossary(e.target.value)} required />
                                         <label className="form-label" >Glossary</label>
                                     </div>
 
 
                                     <div className="form-outline mb-4">
                                         <input type="number" className="form-control"
-                                            value={loan} onChange={(e) => setloan(e.target.value)} />
+                                            value={loan} onChange={(e) => setloan(e.target.value)} required />
                                         <label className="form-label">Loan payment</label>
                                     </div>
 
@@ -147,7 +149,7 @@ function Sample({ BASE_URL }) {
                                 </div>
                             </div>
                             {/* <div className='col-md-6 text center'> */}
-                            <button onClick={handlesave} className="btn btn-primary btn-block mb-4">Save</button>
+                            <button type='submit' className="btn btn-primary btn-block mb-4">Save</button>
                             <p className='text-center error'>{error}</p>
                             {/* </div> */}
                         </div>

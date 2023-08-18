@@ -110,7 +110,7 @@
 }
 
 .background-graph {
-    background-image: url('./assets/o.avif');
+    background-image: url('./assets');
     background-size: 100% 100%;
     background-repeat: no-repeat;
     width: 250%;

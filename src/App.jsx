@@ -11,7 +11,6 @@ import ForgotPassword from './component/passwordReset/ForgotPassword';
 import ResetPassword from './component/passwordReset/Reset';
 import Sample from './component/income/sample';
 import UserForm from './component/userDetails/userForm';
-import About from './component/about';
 import TableData from './component/graph/TableData';
 import IncomeEdit from './component/income/incomeEdit';
 import User from './component/userDetails/user';
@@ -66,7 +65,6 @@ function App() {
             <Route path='/user' element={<UserForm user={user} BASE_URL={BASE_URL} />} />
             <Route path='/profile' element={<User BASE_URL={BASE_URL} />} />
             <Route path='/graph' element={<GraphData BASE_URL={BASE_URL} />} />
-            <Route path='/about' element={<About BASE_URL={BASE_URL} />} />
             <Route path='/data' element={<TableData BASE_URL={BASE_URL} chartData={chartData} />} />
 
           </Routes>
