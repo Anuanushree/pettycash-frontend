@@ -61,7 +61,7 @@ function TableData({ BASE_URL }) {
         } catch (error) {
             console.log("Error in delete income data:", error)
         }
-        navigate(0)
+        navigate(0);
     }
 
     return (

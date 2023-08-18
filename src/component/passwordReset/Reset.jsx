@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
-function ResetPassword({ user ,BASE_URL}) {
+function ResetPassword({ user, BASE_URL }) {
     const [password, setPassword] = useState('');
     const [cpassword, setCpassword] = useState('');
     const [error, seterror] = useState('');
@@ -30,8 +30,9 @@ function ResetPassword({ user ,BASE_URL}) {
                 const response = await axios.post(`${BASE_URL}/user/reset`, users)
                 seterror(response.data.error)
                 console.log(response.data)
-                window.alert('password updated successfully');
-                navigate('/')
+                if (response.data.message == "password updated successfully") {
+                    navigate('/')
+                }
             } catch (error) {
                 console.log("Error in signin user :", error)
             }
@@ -69,9 +70,13 @@ function ResetPassword({ user ,BASE_URL}) {
                                 </div>
                                 <div className="form-group">
                                     <input type="submit" value="Reset" className="btn float-right login_btn" />
-                                    <p className='text-center error' >Message:{error}</p>
+                                    <p className='text-center error' >{error}</p>
                                 </div>
 
+                                <div className="d-flex justify-content-center links">
+                                    If the link is invalid .pls,rend the mail:<a href="/forgotpassword">resend mail</a>
+
+                                </div>
                             </form>
                         </div>
                     </div>
