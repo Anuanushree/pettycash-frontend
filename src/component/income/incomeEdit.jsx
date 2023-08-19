@@ -3,49 +3,61 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Dashboard from '../../dashboard/Dashboard';
 
-function IncomeEdit({ chartData, BASE_URL }) {
-    const [salary, setsalary] = useState(0);
-    const [incentive, setincentive] = useState(0);
-    const [rentIncome, setrentIncome] = useState(0);
-    const [others, setothers] = useState(0);
-    const [rent, setrent] = useState(0);
-    const [glossary, setglossary] = useState(0);
-    const [loan, setloan] = useState(0);
-    const [utilies, setutilies] = useState(0);
-    const [transport, settransport] = useState(0);
-
+function IncomeEdit({ BASE_URL }) {
+    const [salary, setsalary] = useState('0');
+    const [incentive, setincentive] = useState();
+    const [rentIncome, setrentIncome] = useState();
+    const [others, setothers] = useState();
+    const [rent, setrent] = useState();
+    const [glossary, setglossary] = useState();
+    const [loan, setloan] = useState();
+    const [utilies, setutilies] = useState();
+    const [transport, settransport] = useState();
+    const [chartData, setChartData] = useState([]);
     const [error, seterror] = useState('')
 
     const token = localStorage.getItem('token');
     const _id = localStorage.getItem('selectedId');
-    const monyr = localStorage.getItem('monyr')
-    const navigate = useNavigate();
-
-
-    const editData = async () => {
-        const findIncomeData = chartData.find(data => data._id === _id);
-        if (findIncomeData) {
-
-            setsalary(findIncomeData.salary);
-            setincentive(findIncomeData.incentive);
-            setrentIncome(findIncomeData.rentIncome);
-            setothers(findIncomeData.others);
-            setrent(findIncomeData.rent);
-            setloan(findIncomeData.loan);
-            setglossary(findIncomeData.glossary);
-            settransport(findIncomeData.transport);
-            setutilies(findIncomeData.utilies);
-
-        }
-    }
-    useEffect(() => {
-        editData();
-
-    }, [])
 
     const headers = {
         headers: { "authorization": `${token}` }
     }
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const chart = async () => {
+            try {
+                const response = await axios.get(`${BASE_URL}/user/graph`, headers)
+                setChartData(response.data);
+            } catch (error) {
+                console.log('error in graph:', err)
+            }
+        };
+        chart();
+    }, []);
+
+    useEffect(() => {
+        const editData = async () => {
+
+            const findIncomeData = chartData.find(data => data._id === _id);
+            if (findIncomeData) {
+
+                setsalary(findIncomeData.salary);
+                setincentive(findIncomeData.incentive);
+                setrentIncome(findIncomeData.rentIncome);
+                setothers(findIncomeData.others);
+                setrent(findIncomeData.rent);
+                setloan(findIncomeData.loan);
+                setglossary(findIncomeData.glossary);
+                settransport(findIncomeData.transport);
+                setutilies(findIncomeData.utilies);
+
+            }
+        }
+        editData();
+    }, []);
+
+
     const handleupdate = async (event) => {
         event.preventDefault();
 

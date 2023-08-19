@@ -51,11 +51,12 @@ function TableData({ BASE_URL }) {
     console.log(sumSave);
     localStorage.setItem('sumSave', sumSave)
 
-    function setId(selectedId) {
+    function setId(selectedId, event) {
         localStorage.setItem('selectedId', selectedId);
         console.log('button clicked', selectedId)
+
     }
-   
+
 
     return (
         <>

@@ -18,34 +18,22 @@ import GraphData from './component/graph/graphData';
 
 function App() {
   const [user, setuser] = useState([]);
-  const [chartData, setChartData] = useState([]);
   const BASE_URL = "https://pettycash-uvd8.onrender.com";
   // https://pettycash-uvd8.onrender.com
   // http://localhost:3001
   console.log("starting")
   useEffect(() => {
-    axios
-      .get(`${BASE_URL}/user/list`)
-      .then(response => setuser(response.data))
-    console.log(user);
+    const getuser = async () => {
+      try {
+        const response = await axios.get(`${BASE_URL}/user/list`)
+        setuser(response.data)
+      } catch (error) {
+        console.log("Error in getting user:", error)
+      }
+    };
+    getuser()
   }, []);
 
-  const token = localStorage.getItem('token');
-  const headers = {
-    headers: { "authorization": `${token}` }
-  }
-  const chart = async () => {
-    try {
-      const response = await axios.get(`${BASE_URL}/user/graph`, headers)
-      setChartData(response.data);
-    } catch (error) {
-      console.log('error in graph:', err)
-    }
-  }
-
-  useEffect(() => {
-    chart();
-  }, []);
 
   return (
     <Router>
@@ -60,12 +48,12 @@ function App() {
       <div id="page-top">
         <div id="wrapper">
           <Routes>
-            <Route path='/sample' element={<Sample BASE_URL={BASE_URL} chartData={chartData} />} />
-            <Route path='/incomeEdit' element={<IncomeEdit BASE_URL={BASE_URL} chartData={chartData} />} />
+            <Route path='/sample' element={<Sample BASE_URL={BASE_URL} />} />
+            <Route path='/incomeEdit' element={<IncomeEdit BASE_URL={BASE_URL} />} />
             <Route path='/user' element={<UserForm user={user} BASE_URL={BASE_URL} />} />
             <Route path='/profile' element={<User BASE_URL={BASE_URL} />} />
             <Route path='/graph' element={<GraphData BASE_URL={BASE_URL} />} />
-            <Route path='/data' element={<TableData BASE_URL={BASE_URL} chartData={chartData} />} />
+            <Route path='/data' element={<TableData BASE_URL={BASE_URL} />} />
 
           </Routes>
         </div>
