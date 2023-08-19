@@ -66,8 +66,8 @@ function TableData({ BASE_URL }) {
                 <h3 className='text-center'>LEDGER</h3>
                 <table className="table table-dark table-bordered border border-primary p-2 m-4">
                     <thead>
-                        <tr><th colSpan="6"> Income</th>
-                            <th colSpan={8}>Expenses And Total</th>
+                        <tr><th colSpan="5"> Income</th>
+                            <th colSpan={9}>Expenses And Total</th>
                         </tr>
                     </thead>
                     <tbody>

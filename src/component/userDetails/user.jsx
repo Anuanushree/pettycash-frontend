@@ -5,7 +5,7 @@ import Dashboard from '../../dashboard/Dashboard';
 
 function User({ BASE_URL }) {
     const [profile, setprofile] = useState([]);
-    const [totalsaving, setTotalSaving] = useState(0);
+    const [totalsaving, setTotalSaving] = useState("0");
     const token = localStorage.getItem('token');
 
 
