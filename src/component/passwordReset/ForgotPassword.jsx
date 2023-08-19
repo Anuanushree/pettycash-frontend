@@ -12,7 +12,7 @@ function ForgotPassword({ BASE_URL }) {
                 email
             }
             const response = await axios.post(`${BASE_URL}/user/forgot`, user)
-          
+            seterror(response.data.error)
             console.log(response.data)
         } catch (error) {
             console.log("Error in signin user :", error);
