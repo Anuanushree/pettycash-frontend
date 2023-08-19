@@ -55,27 +55,27 @@ function IncomeEdit({ chartData, BASE_URL }) {
         console.log(monthYear)
         // const findDate = monyr.find(data => data === monthYear)
 
-            const savedata = {
-                _id,
-                salary,
-                incentive,
-                rentIncome,
-                others,
-                rent,
-                date,
-                glossary,
-                loan, utilies,
-                transport
-            }
-            try {
-                const response = await axios.put(`${BASE_URL}/user/incomeEdit`, savedata, headers)
-                console.log(response.data);
-                navigate('/data');
+        const savedata = {
+            _id,
+            salary,
+            incentive,
+            rentIncome,
+            others,
+            rent,
+            date,
+            glossary,
+            loan, utilies,
+            transport
+        }
+        try {
+            const response = await axios.put(`${BASE_URL}/user/incomeEdit`, savedata, headers)
+            console.log(response.data);
+            navigate('/data');
 
-            } catch (error) {
-                console.log('Error in getting a data:', error);
-                seterror(error.response.data.error);
-            }
+        } catch (error) {
+            console.log('Error in getting a data:', error);
+            seterror(error.response.data.error);
+        }
     }
 
 

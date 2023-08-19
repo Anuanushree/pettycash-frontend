@@ -21,7 +21,7 @@ function Dashboard() {
     const headers = {
         headers: { "authorization": `${token}` }
     }
-    const BASE_URL = "https://pettycash-uvd8.onrender.com";
+    const BASE_URL = "http://localhost:3001";
 
     useEffect(() => {
         axios
