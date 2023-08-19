@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Dashboard from '../../dashboard/Dashboard';
-import { useNavigate } from 'react-router-dom';
 
 
-function User({ user, BASE_URL }) {
+function User({ BASE_URL }) {
     const [profile, setprofile] = useState([]);
-
-    const id = localStorage.getItem('id');
+    const [totalsaving, setTotalSaving] = useState(0);
     const token = localStorage.getItem('token');
-
-    const year = localStorage.getItem('year');
 
 
     const headers = {
@@ -28,15 +24,12 @@ function User({ user, BASE_URL }) {
         }
     }
     useEffect(() => {
-        getUserProfile()
+        getUserProfile();
     }, []);
 
-    var sumSave = localStorage.getItem('sumSave');
-
-    if (sumSave) {
-        var totalSaving = sumSave;
-    }
-
+    useEffect(() => {
+        setTotalSaving(localStorage.getItem("sumSave"))
+    })
     return (
         <>
             <Dashboard />
@@ -91,7 +84,7 @@ function User({ user, BASE_URL }) {
                                                 <div className="row">
 
                                                     <div className="col-sm-6">
-                                                        <p className="m-b-10 f-w-600">Total saving :{totalSaving} </p>
+                                                        <p className="m-b-10 f-w-600" onChange={totalsaving}>Total saving :{totalsaving} </p>
 
                                                     </div>
                                                 </div>

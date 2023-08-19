@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
-import { Link, redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Dashboard from '../../dashboard/Dashboard';
 import { useNavigate } from 'react-router-dom';
 
@@ -108,12 +108,12 @@ function TableData({ BASE_URL }) {
                                     <td>{datas.rent + datas.glossary + datas.utilies + datas.loan + datas.transport}</td>
                                     <td>{parseInt(datas.salary + datas.others + parseInt(datas.incentive)) - (datas.rent + datas.glossary
                                         + datas.utilies + datas.loan + datas.transport)}</td>
-                                    <td><Link to='/incomeEdit'>
+                                    <td><Link to='/edit'>
                                         <button className="btn btn-info"
                                             onClick={(e) =>
                                                 setId(datas._id)}
                                             variant="info">
-                                            Edit</button></Link>
+                                            Edit</button>  </Link>
                                     </td>
 
                                 </tr>

@@ -12,13 +12,14 @@ import ResetPassword from './component/passwordReset/Reset';
 import Sample from './component/income/sample';
 import UserForm from './component/userDetails/userForm';
 import TableData from './component/graph/TableData';
-import IncomeEdit from './component/income/incomeEdit';
 import User from './component/userDetails/user';
 import GraphData from './component/graph/graphData';
+import EditIncome from './component/income/EditIncome';
 
 function App() {
   const [user, setuser] = useState([]);
-  const BASE_URL = "https://pettycash-uvd8.onrender.com";
+  const [chartData, setChartData] = useState([]);
+  const BASE_URL = "http://localhost:3001";
   // https://pettycash-uvd8.onrender.com
   // http://localhost:3001
   console.log("starting")
@@ -33,7 +34,17 @@ function App() {
     };
     getuser()
   }, []);
-
+  
+  const token = localStorage.getItem('token');
+  const headers = {
+    headers: { "authorization": `${token}` }
+  }
+  useEffect(() => {
+    axios
+      .get(`${BASE_URL}/user/graph`, headers)
+      .then(response => setChartData(response.data))
+    console.log(chartData)
+  }, []);
 
   return (
     <Router>
@@ -49,7 +60,7 @@ function App() {
         <div id="wrapper">
           <Routes>
             <Route path='/sample' element={<Sample BASE_URL={BASE_URL} />} />
-            <Route path='/incomeEdit' element={<IncomeEdit BASE_URL={BASE_URL} />} />
+            <Route path='/edit' element={<EditIncome BASE_URL={BASE_URL} chartData={chartData} />} />
             <Route path='/user' element={<UserForm user={user} BASE_URL={BASE_URL} />} />
             <Route path='/profile' element={<User BASE_URL={BASE_URL} />} />
             <Route path='/graph' element={<GraphData BASE_URL={BASE_URL} />} />

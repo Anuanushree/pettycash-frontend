@@ -68,16 +68,6 @@ function Dashboard() {
                             <span>profile</span>
                         </Link>
                     </li>
-
-                    <hr className="sidebar-divider"></hr>
-                    <li className="nav-item ">
-                        <Link className="nav-link" to="/graph">
-                            <i className='fas fa-poll icon' style={{ fontSize: "20px" }}></i>
-                            <span>graph</span>
-                        </Link>
-                    </li>
-
-
                     <hr className="sidebar-divider"></hr>
                     <li className="nav-item ">
                         <Link className="nav-link" to="/sample">
@@ -85,6 +75,13 @@ function Dashboard() {
                             <i className="fas fa-money-check-alt icon" style={{ fontSize: "20px" }}></i>
 
                             <span>Income and Expenses</span>
+                        </Link>
+                    </li>
+                    <hr className="sidebar-divider"></hr>
+                    <li className="nav-item ">
+                        <Link className="nav-link" to="/graph">
+                            <i className='fas fa-poll icon' style={{ fontSize: "20px" }}></i>
+                            <span>graph</span>
                         </Link>
                     </li>
                     <hr className="sidebar-divider"></hr>
