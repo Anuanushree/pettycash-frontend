@@ -3,6 +3,7 @@ import axios from 'axios';
 import Dashboard from '../../dashboard/Dashboard';
 import { useNavigate } from 'react-router-dom';
 
+
 function User({ user, BASE_URL }) {
     const [profile, setprofile] = useState([]);
 
@@ -15,12 +16,19 @@ function User({ user, BASE_URL }) {
     const headers = {
         headers: { "authorization": `${token}` }
     }
-    useEffect(() => {
-        axios
-            .get(`${BASE_URL}/user/updateuser`, headers)
-            .then(response => setprofile(response.data))
-        console.log(profile);
+    const getUserProfile = async () => {
+        try {
+            const response = await axios.get(`${BASE_URL}/user/updateuser`, headers)
+            setprofile(response.data);
+            console.log(profile);
 
+        } catch (error) {
+            console.log("error in profile :", error);
+
+        }
+    }
+    useEffect(() => {
+        getUserProfile()
     }, []);
 
     var sumSave = localStorage.getItem('sumSave');
@@ -45,7 +53,8 @@ function User({ user, BASE_URL }) {
                                         <div className="col-sm-12 col-md-4 text-center bg-c-lite-green user-profile">
                                             <div className="card-block text-center text-white">
                                                 <div className="m-b-25">
-                                                    <img src={`http://localhost:3001/assets/${profile.profilename}`} className="img-radius img-fluid profile-img " alt="User-Profile-Image"
+                                                    <img src={`https://pettycash-uvd8.onrender.com/assets/${profile.profilename}`} className="img-radius img-fluid profile-img "
+                                                        alt="Profile-Image-loading..."
                                                     />
                                                 </div>
                                                 <h6 className="f-w-600">{profile.username}</h6>

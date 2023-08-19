@@ -70,8 +70,7 @@ a:focus {
 
 .sidebar {
     width: 6.5rem;
-    min-height: 110vh;
-    max-height: 160vh;
+    min-height: 140vh;
 }
 
 .sidebar .nav-item {

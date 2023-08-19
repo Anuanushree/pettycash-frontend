@@ -28,11 +28,9 @@ function Sample({ BASE_URL }) {
     console.log(monyr)
     const handlesave = async (event) => {
         event.preventDefault();
-        console.log(monyr)
         const getdate = new Date(date)
         const monthYear = (getdate.getMonth() + "/" + getdate.getFullYear())
         console.log(monthYear);
-
         if (!monyr.includes(monthYear)) {
 
             const savedata = {
@@ -119,7 +117,7 @@ function Sample({ BASE_URL }) {
                                     <div className="form-outline mb-4">
                                         <input type="number" className="form-control"
                                             value={rent} onChange={(e) => setrent(e.target.value)} required />
-                                        <label class="form-label" >Rent </label>
+                                        <label className="form-label" >Rent </label>
                                     </div>
 
                                     <div className="form-outline mb-4">
@@ -148,7 +146,7 @@ function Sample({ BASE_URL }) {
                                     </div>
                                 </div>
                             </div>
-                            {/* <div className='col-md-6 text center'> */}
+
                             <button type='submit' className="btn btn-primary btn-block mb-4">Save</button>
                             <p className='text-center error'>{error}</p>
                             {/* </div> */}

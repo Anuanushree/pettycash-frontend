@@ -13,7 +13,7 @@ function IncomeEdit({ chartData, BASE_URL }) {
     const [loan, setloan] = useState(0);
     const [utilies, setutilies] = useState(0);
     const [transport, settransport] = useState(0);
-    const [date, setdate] = useState('');
+
     const [error, seterror] = useState('')
 
     const token = localStorage.getItem('token');
@@ -25,7 +25,7 @@ function IncomeEdit({ chartData, BASE_URL }) {
     const editData = async () => {
         const findIncomeData = chartData.find(data => data._id === _id);
         if (findIncomeData) {
-            setdate(findIncomeData.date);
+
             setsalary(findIncomeData.salary);
             setincentive(findIncomeData.incentive);
             setrentIncome(findIncomeData.rentIncome);
@@ -43,17 +43,11 @@ function IncomeEdit({ chartData, BASE_URL }) {
 
     }, [])
 
+    const headers = {
+        headers: { "authorization": `${token}` }
+    }
     const handleupdate = async (event) => {
         event.preventDefault();
-
-        const headers = {
-            headers: { "authorization": `${token}` }
-        }
-
-        const getdate = new Date(date)
-        const monthYear = (getdate.getMonth() + "/" + getdate.getFullYear())
-        console.log(monthYear)
-        // const findDate = monyr.find(data => data === monthYear)
 
         const savedata = {
             _id,
@@ -62,7 +56,6 @@ function IncomeEdit({ chartData, BASE_URL }) {
             rentIncome,
             others,
             rent,
-            date,
             glossary,
             loan, utilies,
             transport
@@ -78,7 +71,20 @@ function IncomeEdit({ chartData, BASE_URL }) {
         }
     }
 
+    const handleDelete = async (event) => {
+        event.preventDefault();
+        try {
+            const response = await axios.delete(`${BASE_URL}/user/incomedelete/${_id}`, headers)
+            console.log(response.data);
+            if (response.data.message == "data deleted successfully") {
+                navigate('/data')
+            }
 
+        } catch (error) {
+            console.log("Error in delete income data:", error)
+        }
+
+    }
 
     return (
         <>
@@ -87,7 +93,7 @@ function IncomeEdit({ chartData, BASE_URL }) {
 
                 <div className='i-e-body '>
                     <h3 className='text-center'>Monthly Income and Expenses Form</h3>
-                    <form onSubmit={handleupdate}>
+                    <form >
                         <div className='row p-2'>
 
                             <div className='col-md-6 '>
@@ -129,7 +135,7 @@ function IncomeEdit({ chartData, BASE_URL }) {
                                     <div className="form-outline mb-4">
                                         <input type="number" className="form-control"
                                             value={rent} onChange={(e) => setrent(e.target.value)} />
-                                        <label class="form-label" >Rent </label>
+                                        <label className="form-label" >Rent </label>
                                     </div>
 
                                     <div className="form-outline mb-4">
@@ -159,7 +165,9 @@ function IncomeEdit({ chartData, BASE_URL }) {
                                 </div>
                             </div>
                             {/* <div className='col-md-6 text center'> */}
-                            <button type='submit' className="btn btn-primary btn-block mb-4">Save</button>
+
+                            <button onClick={handleupdate} className="btn btn-primary btn-block mb-4">Update</button>
+                            <button onClick={handleDelete} className="btn btn-danger btn-block mb-4">Delete</button>
                             <p className='text-center error'>{error}</p>
                             {/* </div> */}
                         </div>

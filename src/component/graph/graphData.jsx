@@ -126,8 +126,8 @@ function GraphData({ BASE_URL }) {
             <Dashboard />
             <div className='background-graph'>
                 <div className="App">
-                    <p className='year'>  <i onClick={decreament} class="fa fa-arrow-left" aria-hidden="true"></i>
-                        &nbsp;  {count}    &nbsp;<i onClick={increament} class="fa fa-arrow-right" aria-hidden="true"></i></p>
+                    <p className='year'>  <i onClick={decreament} className="fa fa-arrow-left" aria-hidden="true"></i>
+                        &nbsp;  {count}    &nbsp;<i onClick={increament} className="fa fa-arrow-right" aria-hidden="true"></i></p>
 
                     <Bar options={option} data={data} className='graph-bar fs-1' />
 

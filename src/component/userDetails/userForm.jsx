@@ -17,6 +17,7 @@ function UserForm({ user, BASE_URL }) {
     const [address, setAddress] = useState('');
     const [profession, setProfession] = useState('');
     const [profile, setprofile] = useState();
+    const [error, seterror] = useState('')
 
 
     const navigate = useNavigate();
@@ -127,7 +128,7 @@ function UserForm({ user, BASE_URL }) {
                             <div className="form-outline">
                                 <input type="text" className="form-control"
                                     value={gender} onChange={(e) => setgender(e.target.value)} required />
-                                <label class="form-label" for="form6Example1">Gender</label>
+                                <label className="form-label" >Gender</label>
                             </div>
                         </div>
                         <div className="col-md-6">
@@ -152,10 +153,9 @@ function UserForm({ user, BASE_URL }) {
                     </div>
 
 
-                    <div class="form-outline mb-4">
+                    <div className="form-outline mb-4">
                         <button type="submit" className="btn btn-primary btn-block  form-control mb-4">Save</button>
-                        {/* <textarea class="form-control" rows="4"></textarea>
-                    <label class="form-label" >Additional information</label> */}
+                        <p className='text-center error' >{error}</p>
                     </div>
 
 

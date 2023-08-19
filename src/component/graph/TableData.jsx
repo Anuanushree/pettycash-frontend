@@ -55,16 +55,7 @@ function TableData({ BASE_URL }) {
         localStorage.setItem('selectedId', selectedId);
         console.log('button clicked', selectedId)
     }
-    const deleteditems = async (_id) => {
-        try {
-            const response = await axios.delete(`${BASE_URL}/user/incomedelete/${_id}`, headers)
-            console.log(response.data);
-
-        } catch (error) {
-            console.log("Error in delete income data:", error)
-        }
-        navigate(0);
-    }
+   
 
     return (
         <>
@@ -121,12 +112,7 @@ function TableData({ BASE_URL }) {
                                             onClick={(e) =>
                                                 setId(datas._id)}
                                             variant="info">
-                                            Update</button></Link>
-                                        <Link >
-                                            <button className='btn btn-danger'
-                                                onClick={(e) =>
-                                                    deleteditems(datas._id)}>delete</button>
-                                        </Link>
+                                            Edit</button></Link>
                                     </td>
 
                                 </tr>

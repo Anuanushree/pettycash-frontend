@@ -50,24 +50,21 @@ function Dashboard() {
     return (
         <div>
 
-            {/* <h2 className='text-right' id='headingStyle'>admin <span><a href='/userlist'>
-                <i class="fa fa-user" aria-hidden="true"></i></a></span></h2> */}
-
             <div id='wrapper'>
                 <ul className="navbar-nav bg-gradient bg sidebar sidebar-dark accordion" id="accordionSidebar">
-                    <a className="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                    <div className="sidebar-brand d-flex align-items-center justify-content-center" href="profile">
                         <div className="sidebar-brand-icon rotate-n-15">
                             <br /><br />
-                            <a href='/profile'><i className="fa fa-user icon" aria-hidden="true"></i></a>
-                            <p className="dashboard-user" onClick={handlenav}>{profile.username}</p>
+                            <a href="profile"><i className="fa fa-user icon" aria-hidden="true"></i></a>
+                            <p onClick={handlenav} className="dashboard-user">{profile.username}</p>
                         </div>
                         <div className="sidebar-brand-text mx-3"></div>
-                    </a>
+                    </div>
                     <br /><br />
                     <li className="nav-item active">
                         <Link className="nav-link" to="/profile">
                             <i className="far fa-id-badge" style={{ fontSize: "20px" }} ></i>
-                            {/* <FontAwesomeIcon icon={faTachometerAlt} /> */}
+
                             <span>profile</span>
                         </Link>
                     </li>
@@ -84,7 +81,7 @@ function Dashboard() {
                     <hr className="sidebar-divider"></hr>
                     <li className="nav-item ">
                         <Link className="nav-link" to="/sample">
-                            {/* <i class="fas fa-github"></i> */}
+
                             <i className="fas fa-money-check-alt icon" style={{ fontSize: "20px" }}></i>
 
                             <span>Income and Expenses</span>
@@ -95,7 +92,7 @@ function Dashboard() {
                         <Link className="nav-link" to="/data">
 
                             <i className='fas fa-money-check icon' style={{ fontSize: "20px" }}></i>
-                            {/* <FontAwesomeIcon icon={faTachometerAlt} /> */}
+
                             <span>Ledger</span>
                         </Link>
                     </li>
@@ -109,7 +106,7 @@ function Dashboard() {
                 </ul>
             </div>
         </div>
-    )
+    );
 }
 
 export default Dashboard;
