@@ -67,6 +67,8 @@ function SignIn({ BASE_URL }) {
                             </form>
                         </div>
                         <div className="card-footer">
+                            <p className="text-white"> userid : anu@gmail.com</p>
+                             <p className="text-white"> password : 123</p>
                             <div className="d-flex justify-content-center links">
                                 Don't have an account?<a href="/signup">Sign Up</a>
                             </div>
